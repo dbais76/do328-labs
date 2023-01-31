@@ -1,0 +1,17 @@
+kind: DestinationRule
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: webapp-svc  ### USE TO IDENTITY THE DESTINATION RULE, COULD BE ANYTHING
+  namespace: webapp
+spec:
+  host: webapp-svc.webapp.svc.cluster.local   ### SERVICE NAME TARGET
+  subsets:
+    - labels:
+        version: v1   ## FIND A POD WITH LABEL VERSION:V1
+      name: v1
+    - labels:
+        version: v2  ### FIND A POD WITH LABEL VERSION:V2
+      name: v2
+      
+      
+      

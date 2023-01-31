@@ -1,0 +1,21 @@
+kind: VirtualService
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: webapp-svc   ### THIS IS JUST A NAME, CAN BE ANYTHING
+  namespace: webapp
+spec:
+  hosts:
+    - webapp-svc.webapp.svc.cluster.local   ### THE SERVICE DNS NAME IN K8S ON WHICH YOU ARE APPYLING ROUTING RULES
+    gateways:
+    - name of the gateway you create 
+  http:
+    - route:
+        - destination:
+            host: webapp-svc.webapp.svc.cluster.local  ### DNS NAME OF THE TARGET SERVICE
+            subset: v1   ### THE NAME DEFINED IN THE DESTINATION RULE
+        - destination:
+            host: webapp-svc.webapp.svc.cluster.local  ### DNS NAME OF THE ALTERNATE TARGET SERVICE
+            subset: v2
+
+
+
