@@ -1,0 +1,1000 @@
+   70  oc apply -f helloworld-withoutvs.yaml
+   71  oc get pod -w
+   72  curl http://istio-ingressgateway-istio-system.apps.cluster-fgq2t.fgq2t.sandbox1734.opentlc.com
+   73  curl http://istio-ingressgateway-istio-system.apps.cluster-fgq2t.fgq2t.sandbox1734.opentlc.com/hello
+   74  oc get svc
+   75  oc get endpoints
+   76  cd ../chap4-2-
+   77  cd ../chap4-2
+   78  cd ../chap4-2-Header-Based-Routing/
+   79  ls
+   80  less helloworld.yaml 
+   81  less helloworld-gateway.yaml 
+   82  less gateway-vs-dr.yaml
+   83  less helloworld.yaml 
+   84  oc apply -f gateway-vs-dr.yaml
+   85  oc get vs
+   86  curl http://istio-ingressgateway-istio-system.apps.cluster-fgq2t.fgq2t.sandbox1734.opentlc.com/hello
+   87  ~/istio-DO328/delete_all.sh 
+   88  oc apply -f helloworld.yaml 
+   89  oc apply -f gateway-vs-dr.yaml 
+   90  oc get vs
+   91  oc describe vs
+   92  curl http://istio-ingressgateway-istio-system.apps.cluster-fgq2t.fgq2t.sandbox1734.opentlc.com/hello
+   93  curl -H "app-header: testcanary" http://istio-ingressgateway-istio-system.apps.cluster-fgq2t.fgq2t.sandbox1734.opentlc.com/hello
+   94  cd ../chap4-2-Prefix-Based-Routing/
+   95  ls
+   96  less gateway-vs-dr.yaml 
+   97  cd -
+   98  ls
+   99  less traffic-rules.yaml 
+  100  cd ../
+  101  ls
+  102  less ~/service-entry.yaml 
+  103  oc apply -f ~/service-entry.yaml
+  104  less ~/service-entry.yaml 
+  105  ls
+  106  mkdir chap4-3-ServiceEntry
+  107  mv ~/curl-app.json chap4-3-ServiceEntry/.
+  108  mv ~/service-entry.yaml chap4-3-ServiceEntry/.
+  109  cd chap4-3-ServiceEntry/
+  110  ls
+  111  cd 
+  112  oc get is myapp
+  113  ./ocp-login-user.sh 
+  114  less ocp-login-user.sh 
+  115  oc get is myapp
+  116  oc describe is myapp
+  117  oc describe is php -n openshift | less
+  118  oc get pod -w
+  119  oc get project
+  120  oc project bookdemo
+  121  oc get pod
+  122  oc get pod -n testprj
+  123  oc get pod -n istio-system
+  124  oc describe pod istio-ingressgateway-6fd97c967d-bx8fs -n istio-system | less
+  125  less istio-DO328/bookinfo-demo/bookinfo-gateway.yaml 
+  126  oc get svc productpage 
+  127  less istio-DO328/bookinfo-demo/bookinfo-gateway.yaml 
+  128  oc project testcanary
+  129  sudo -i
+  130  ls
+  131  oc project
+  132  cd istio-DO328/
+  133  ls
+  134  ./delete_all.sh 
+  135  oc apply -f ~/curl-app.json 
+  136  oc get pod -w
+  137  oc rsh curl-1-rllj4
+  138  cd 
+  139  oc project testprj
+  140  oc get bc
+  141  oc get bulds
+  142  oc get builds
+  143  oc get -o json bc/myapp | less
+  144  oc get -o yaml bc/myapp | less
+  145  oc help set triggers | less
+  146  oc describe bc myapp | less
+  147  ls
+  148  less myapp.json
+  149  oc --help | grep build
+  150  #oc create -f mybuild.yaml
+  151  oc get build
+  152  oc logs bc/myapp | less
+  153  oc adm prune builds | less
+  154  oc adm prune builds -h | less
+  155  oc adm prune  -h | less
+  156  less myapp.json
+  157  oc set build-hook --help |less
+  158  while true; do curl http://istio-ingressgateway-istio-system.apps.cluster-fgq2t.fgq2t.sandbox1734.opentlc.com/hello; done
+  159  while true; do curl http://istio-ingressgateway-istio-system.apps.cluster-fgq2t.fgq2t.sandbox1734.opentlc.com/productpage; done
+  160  while true; do curl http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/productpage; done
+  161  oc logs --tail 1 helloworld-v1-7f8866ddf6-j4fzw -c helloworld
+  162  oc logs --tail 1 helloworld-v1-7f8866ddf6-j4fzw -c helloworld -f
+  163  vi myassemble
+  164  while true; do curl http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/hello; done
+  165  cd 
+  166  sudo -i
+  167  ls
+  168  cd kustomize-demo/
+  169  ls
+  170  less base/helloworld.yaml 
+  171  less base/helloworld-ingress.yaml 
+  172  vim base/helloworld-ingress.yaml
+  173  less base/helloworld.yaml 
+  174  !
+  175  less base/helloworld-svc.yaml 
+  176  less overlays/prod/helloworld-ingress.yaml 
+  177  vim overlays/prod/helloworld-ingress.yaml
+  178  less overlays/prod/kustomization.yaml 
+  179  less base/.
+  180  less base/kustomization.yaml 
+  181  tree .
+  182  less base/helloworld.yaml 
+  183  less overlays/prod/helloworld.yaml 
+  184  less base/helloworld-ingress.yaml 
+  185  less overlays/prod/overlays/prod/helloworld.yaml
+  186  less overlays/prod/helloworld-ingress.yaml 
+  187  less base/kustomization.yaml 
+  188  less overlays/prod/kustomization.yaml 
+  189  oc new-project kustomize
+  190  ls
+  191  oc apply -k base/.
+  192  oc get pod -w
+  193  oc get route
+  194  curl http://hello.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/hello
+  195  oc apply -k overlays/prod/.
+  196  oc get pod
+  197  oc get route
+  198  curl http://hello-v2.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/hello
+  199  cd 
+  200  while true; do curl http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/hello; done
+  201  oc get pod
+  202  oc logs --tail 1 helloworld-v2-6468c867b6-8f9bv -c helloworld
+  203  oc logs --tail 1 helloworld-v2-6468c867b6-8f9bv -c helloworld -f
+  204  cd 
+  205  less ocp-login.sh 
+  206  oc get route
+  207  oc get route -n bookdemo
+  208  oc get route -n openshift-console
+  209  oc get project
+  210  oc project testmy 
+  211  oc get po
+  212  sudo -i
+  213  oc get bc
+  214  oc logs bc/app1 | less
+  215  sudo -i
+  216  podman images
+  217  sudo -i
+  218  oc logs bc/app1 | less
+  219  sudo -i
+  220  oc get templates -n openshift | less
+  221  oc get templates -n openshift | grep mysql
+  222  oc get templates -n openshift mysql-ephemeral
+  223  oc describe templates -n openshift mysql-ephemeral| less
+  224  oc get -o yaml templates -n openshift mysql-ephemeral > mysql-ephemeral-template.yaml
+  225  less mysql-ephemeral-template.yaml
+  226  oc process mysql-ephemeral-template.yaml -p MYSQL_USER=user101 -o yaml > mysql-ephemeral-processed.yaml
+  227  oc process -f mysql-ephemeral-template.yaml -p MYSQL_USER=user101 -o yaml > mysql-ephemeral-processed.yaml
+  228  less mysql-ephemeral-processed.yaml
+  229  #oc create -f mysql-ephemeral-processed.yaml
+  230  #oc process -f mysql-ephemeral-template.yaml -p MYSQL_USER=user101 -o yaml | oc create -f -
+  231  less mysql-ephemeral-template.yaml
+  232  less mysql-ephemeral-processed.yaml
+  233  oc login --token=sha256~nSw_eE1h6RI6Dtr9zLu3oq2L3W92piawTtK4K26VDMI --server=https://api.gls-tl500-virtual-220822.ls-ap.ole.redhat.com:6443
+  234  oc get projects
+  235  oc whoami
+  236  oc login -u dbais-admin -p '9!#mUN1rz#CE%E?8' --server=https://api.gls-tl500-virtual-220822.ls-ap.ole.redhat.com:6443
+  237  oc get projects
+  238  oc get projects | grep -v "openshift-"
+  239  oc top nodes
+  240  oc adm top nodes
+  241  oc get projects | grep -v "ci-cd"
+  242  oc get projects | grep -e "ci-cd"
+  243  oc get pod -n ujjivan-sfb-ci-cd
+  244  oc get projects | grep -e "codeready"
+  245  oc get projects | grep -e "codeready" | wc -l
+  246  oc get pod -n aamir-ahmed-codeready
+  247  oc get pod -n apoletics-codeready
+  248  oc get pod -A | grep workspace
+  249  vi ocp-login.sh 
+  250  vi ocp-login-user.sh 
+  251  ./ocp-login-user.sh 
+  252  oc whoami --show-console
+  253  oc new-project bookdemo
+  254  oc new-project testcanary
+  255  oc get po -n isito-system
+  256  oc get po -n istio-system
+  257  oc project bookdemo
+  258  cd istio-DO328/
+  259  ls
+  260  cd bookinfo-demo/
+  261  ls
+  262  oc create --save-config -f bookinfo.yaml 
+  263  oc get pod -w
+  264  ls
+  265  oc create --save-config -f bookinfo-gateway.yaml
+  266  oc get route -n istio-system | grep ingress
+  267  oc get gateeay
+  268  oc get pod
+  269  oc get vs
+  270  oc get route -n istio-system | grep kiali
+  271  curl http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/productpage
+  272  cd 
+  273  cd -
+  274  cd ..
+  275  ls
+  276  cd Chap5/
+  277  ls
+  278  cd chap5-1/
+  279  ls
+  280  less helloworld.yaml 
+  281  less helloworld-gateway.yaml 
+  282  less gateway-vs-dr.yaml 
+  283  oc project
+  284  oc project testcanary
+  285  oc whoami
+  286  ls
+  287  less helloworld.yaml 
+  288  less gateway-vs-dr.yaml 
+  289  oc get all
+  290  oc apply -f helloworld.yaml
+  291  oc get pod -w
+  292  oc apply -f gateway-vs-dr.yaml
+  293  oc get gateway
+  294  oc get vs
+  295  oc get dr
+  296  curl http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/hello
+  297  ~/istio-DO328/delete_all.sh 
+  298  oc get po -n istio-system
+  299  oc get vs -n bookdemo 
+  300  oc describe vs -n bookdemo 
+  301  oc describe dr -n bookdemo 
+  302  oc new-project testmy
+  303  c new-app --name app1 --as-deployment-config php:7.3~https://github.com/dbais76/DO180-apps --context-dir php-helloworld -l app=app1
+  304  oc new-app --name app1 --as-deployment-config php:7.3~https://github.com/dbais76/DO180-apps --context-dir php-helloworld -l app=app1
+  305  oc get pod -w
+  306  oc get pod
+  307  oc get svc
+  308  oc get route
+  309  oc expose svc app1
+  310  oc get route
+  311  curl http://app1-testmy.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com
+  312  oc new-app --name app2 --as-deployment-config php:7.3~https://github.com/dbais76/DO180-apps --context-dir php-helloworld -l app=app2
+  313  oc get svc
+  314  oc get pod | grep Running
+  315  oc get route
+  316  curl http://app1-testmy.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com
+  317  oc help set route-backends | less
+  318  oc set route-backends app1 app1=90 app2=10
+  319  oc get route
+  320  while true; do
+  321  while tru; do curl http://app1-testmy.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com; done
+  322  while true; do curl http://app1-testmy.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com; done
+  323  oc get route
+  324  oc edit route app1
+  325  while true; do curl http://app1-testmy.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com; done
+  326  ls
+  327  less helloworld.yaml 
+  328  less gateway-vs-dr.yaml
+  329  oc project
+  330  oc project testcanary
+  331  oc apply -f helloworld.yaml
+  332  oc get po -w
+  333  oc apply -f gateway-vs-dr.yaml
+  334  oc get svc
+  335  oc get route -n istio-system
+  336  curl http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/hello
+  337  cd ../chap5-2/
+  338  ls
+  339  less gateway-vs-dr.yaml 
+  340  vim gateway-vs-dr.yaml
+  341  oc apply -f gateway-vs-dr.yaml
+  342  oc get vs
+  343  oc describe vs
+  344  vim gateway-vs-dr.yaml
+  345  oc apply -f gateway-vs-dr.yaml
+  346  ~/ocp-login-user.sh 
+  347  cd ../../Chap6/chap6-1
+  348  ls
+  349  oc project testcanary
+  350  curl -H "app-header: testcanary" curl http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/hello
+  351  curl -H "app-header: testcanary" http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/hello
+  352  while true; do curl -H "app-header: testcanary" http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/hello; done
+  353  curl -vv  -H "app-header: testcanary" http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/hello
+  354  while true; do curl -H "app-header: testcanary" http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/hello; done
+  355  curl -vv  -H "app-header: testcanary" http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/hello
+  356  curl  -H "app-header: testcanary" http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/hello
+  357  time curl  -H "app-header: testcanary" http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/hello
+  358  curl  -H "app-header: testcanary" http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/hello
+  359  time curl  -H "app-header: testcanary" http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/hello
+  360  cd 
+  361  oc project vatsal
+  362  ./ocp-login.sh 
+  363  oc project vatsal
+  364  oc get sa
+  365  oc get deployment
+  366  oc get -o json deployment/test | less
+  367  oc get scc privileged -o json | less
+  368  oc adm policy add-scc-to-user privileged -z sa1 -n vatsal
+  369  oc get scc privileged -o json | less
+  370  oc get pod
+  371  oc describe pod test-5468b8b86f-pzds9 | grep scc
+  372  oc delete pod test-5468b8b86f-pzds9
+  373  oc get po -w
+  374  oc describe pod test-5468b8b86f-p4qkq | grep scc
+  375  while true; do curl http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/hello; done
+  376  oc project bookdemo
+  377  ~/istio-DO328/delete_all.sh 
+  378  cd 
+  379  cd -
+  380  curl http://localhost:8181
+  381  watch -d oc get is
+  382  watch -d oc get is app1
+  383  oc get rc
+  384  oc get pod
+  385  cd 
+  386  ls
+  387  sudo -i
+  388  ls
+  389  cd Downloads/DO280-NP
+  390  ls
+  391  pwd
+  392  less default-deny.yaml 
+  393  less allow-from-ns-abc.yaml
+  394  cat *.yaml
+  395  cd 
+  396  ~/ocp-login-user.sh 
+  397  oc project testmy
+  398  oc get templates
+  399  oc get templates -n openshift | less
+  400  oc get templates -n openshift |  grep mysql
+  401  oc describe templates -n openshift mysql-ephemeral | less
+  402  ls
+  403  less mysql-ephemeral-template.yaml
+  404  less mysql-ephemeral-processed.yaml
+  405  oc create -f mysql-ephemeral-processed.yaml
+  406  oc get pod -w
+  407  oc get secret
+  408  oc get -o json secret mysql | less
+  409  echo dXNlcjEwMQ== | base64 -d
+  410  oc get templates -n openshift | less
+  411  ld
+  412  ls
+  413  cd kustomize-demo/
+  414  cd 
+  415  while true; do curl istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/productpage; done
+  416  oc get all
+  417  oc project bookdemo
+  418  while true; do curl istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/productpage; done
+  419  oc whoami
+  420  ./ocp-login-user.sh 
+  421  while true; do curl istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/productpage; done
+  422  oc project testmy
+  423  oc get dc
+  424  oc get -o json dc/app1 | less
+  425  oc get -o yaml dc/app1 | less
+  426  oc get -o yaml dc/app1 > app1_dc.yaml
+  427  oc get -o yaml dc/app1 | less
+  428  oc get dc
+  429  oc set -h | less
+  430  oc set deployment-hook -h | less
+  431  oc get route app1
+  432  oc help set route-backends | less
+  433  oc help set probe | less
+  434  oc get rc
+  435  oc get pod -l app=app1
+  436  oc delete pod app1-1-6r5mt ; oc get pod -w
+  437  oc scale dc/app1 --replicas=3 ; watch oc get rc 
+  438  oc get dc-l app=app1
+  439  oc get dc -l app=app1
+  440  oc create secret generic testsec --from-literal=day=Wednesday
+  441  oc create secret generic newsec --from-literal=month=August
+  442  oc set env dc/app1 --from secret=testsec
+  443  oc set env dc/app1 --from secret/testsec
+  444  oc help set resources | less
+  445  oc set resources dc/app1 --limits=cpu=200m,memory=512Mi --requests=cpu=100m,memory=256Mi
+  446  oc get pod -w
+  447  oc get po | grep app1 | grep Running
+  448  oc get dc
+  449  oc get rc
+  450  oc get -o yaml rc/app1-3 | less
+  451  oc get -o yaml rc/app1-2 | less
+  452  oc get -o yaml rc/app1-1 | less
+  453  oc set env dc/app1 --from secret/newsec
+  454  oc get rc | grep app1
+  455  watch oc get rc | grep app1
+  456  oc get rc | grep app1
+  457  oc get pod 
+  458  oc get -o yaml pod app1-4-6kz6r | less
+  459  oc get dc
+  460  oc rollout history
+  461  oc rollout history dc/app1
+  462  oc start-build app1
+  463  oc get pod -w
+  464  oc rollout history dc/app1
+  465  oc get -o yaml secret newsec
+  466  echo QXVndXN0 | base64 -d
+  467  echo September | base64
+  468  oc edit secret newsec
+  469  oc rollout latest dc/app1
+  470  oc rollout history dc/app1
+  471  oc rollout history dc/app1 --revision=4
+  472  oc rollout history dc/app1 --revision=2
+  473  oc rollout history dc/app1 --revision=5
+  474  oc get route
+  475  oc port-forward 8181:8080
+  476  oc port-forward app1-5-m5dz4 8181:8080
+  477  oc get pod
+  478  oc port-forward app1-6-g2fh6 8181:8080
+  479  oc rollback -h | less
+  480  oc rollback dc/app1 --to-version=3
+  481  oc get dc
+  482  oc get pod
+  483  oc get rc
+  484  oc rollout history dc/app1 --revision=7
+  485  oc get pod
+  486  oc port-forward app1-7-nv7rj  8181:8080
+  487  oc start-build app1 ; oc get pod -w
+  488  oc get dc
+  489  oc set triggers dc/app1 --auto
+  490  oc get dc
+  491  oc rollout latest dc/app1
+  492  oc create cm testcm --from-literal=newday=Thursday
+  493  oc set env dc/app1 --from cm/testcm
+  494  cd istio-DO328/Chap6/chap6-1
+  495  uptime
+  496  ~/istio-DO328/delete_all.sh 
+  497  ls
+  498  oc apply -f helloworld.yaml 
+  499  less gateway-vs-dr.yaml 
+  500  vi gateway-vs-dr.yaml
+  501  oc apply -f gateway-vs-dr.yaml 
+  502  less gateway-vs-dr.yaml 
+  503  curl http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/hello
+  504  vi gateway-vs-dr.yaml
+  505  oc apply -f gateway-vs-dr.yaml 
+  506  oc delete -f gateway-vs-dr.yaml
+  507  cd ../chap6-2
+  508  ls
+  509  less gateway-vs-dr.yaml 
+  510  less gateway-vs-dr-without-delay.yaml 
+  511  oc apply -f gateway-vs-dr-without-delay.yaml
+  512  less gateway-vs-dr.yaml 
+  513  oc apply -f gateway-vs-dr.yaml
+  514  oc edit scc privileged 
+  515  cd ..
+  516  cxd ..
+  517  cd ..
+  518  cd Chap7/chap7-2/
+  519  ls
+  520  ~/ocp-login.sh 
+  521  oc project testcanary
+  522  ~/istio-DO328/delete_all.sh 
+  523  ls
+  524  oc apply -f 1.bookinfo.yaml 
+  525  oc apply -f 2.bookinfo-gateway.yaml 
+  526  oc get route -n istio-system
+  527  ls
+  528  oc apply -f 3.destination-rule-all.yaml 
+  529  oc apply -f 4.vs-v1-dr-all.yaml 
+  530  time curl http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/productpage
+  531  time curl http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/productpage > /dev/null
+  532  ls
+  533  oc apply -f 5.intro-delay.yaml 
+  534  time curl http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/productpage > /dev/null
+  535  ls
+  536  oc apply -f 6.req-timeout.yaml 
+  537  time curl http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/productpage > /dev/null
+  538  ~/istio-DO328/delete_all.sh 
+  539  oc projectbookdemo
+  540  oc project bookdemo
+  541  oc get all
+  542  ls
+  543  oc apply -f 3.destination-rule-all.yaml 
+  544  oc apply -f 4.vs-v1-dr-all.yaml 
+  545  less 5.intro-delay.yaml 
+  546  vim 5.intro-delay.yaml 
+  547  oc apply -f 5.intro-delay.yaml
+  548  oc apply -f 6.req-timeout.yaml 
+  549  oc delete -f 6.req-timeout.yaml 
+  550  ls
+  551  oc delete -f 5.intro-delay.yaml 
+  552  oc delete -f 4.vs-v1-dr-all.yaml 
+  553  oc delete -f 3.destination-rule-all.yaml 
+  554  oc get dr
+  555  oc get vs
+  556  ls
+  557  less cleanup.sh 
+  558  ~/istio-DO328/delete_all.sh 
+  559  ls
+  560  oc apply -f 1.bookinfo.yaml 
+  561  oc apply -f 2.bookinfo-gateway.yaml 
+  562  cd ../chap7-3
+  563  ls
+  564  less intro-delay.yaml 
+  565  less req-timeout.yaml 
+  566  less retry-ratings.yaml 
+  567  less intro-delay.yaml 
+  568  less req-timeout.yaml 
+  569  less retry-ratings.yaml 
+  570  vim intro-delay.yaml 
+  571  less req-timeout.yaml 
+  572  less retry-ratings.yaml 
+  573  vim retry-ratings.yaml 
+  574  oc apply -f intro-delay.yaml 
+  575  time curl http://istio-ingressgateway-istio-system.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com/productpage > /dev/null
+  576  ls
+  577  oc apply -f req-timeout.yaml 
+  578  oc apply -f retry-ratings.yaml 
+  579  oc apply -f vs-v1-dr-all.yaml 
+  580  ~/istio-DO328/delete_all.sh 
+  581  ls
+  582  ls -l cd ../chap7-2
+  583  oc apply -f bookinfo.yaml bookinfo-gateway.yaml 
+  584  oc apply -f bookinfo.yaml 
+  585  oc apply -f bookinfo-gateway.yaml 
+  586  oc apply -f vs-v1-dr-all.yaml 
+  587  oc apply -f ../chap7-2/3.destination-rule-all.yaml 
+  588  ls
+  589  oc apply -f intro-delay.yaml 
+  590  oc apply -f req-timeout.yaml 
+  591  oc apply -f retry-ratings.yaml 
+  592  ~/istio-DO328/delete_all.sh 
+  593  ls
+  594  vim test.sh
+  595  ls
+  596  oc get all
+  597  oc apply -f bookinfo.yaml 
+  598  oc apply -f bookinfo-gateway.yaml 
+  599  oc get pod
+  600  ls
+  601  vim retry-ratings.yaml 
+  602  oc apply -f vs-v1-dr-all.yaml 
+  603  less vs-v1-dr-all.yaml 
+  604  oc apply -f retry-ratings.yaml 
+  605  vim retry-ratings.yaml 
+  606  oc apply -f retry-ratings.yaml 
+  607  ls
+  608  ~/istio-DO328/delete_all.sh 
+  609  cd ../chap7-2
+  610  ls
+  611  oc apply -f 1.bookinfo.yaml 
+  612  oc project
+  613  oc apply -f 2.bookinfo-gateway.yaml 
+  614  ls
+  615  less 3.destination-rule-all.yaml 
+  616  oc apply -f 3.destination-rule-all.yaml 
+  617  oc apply -f 4.vs-v1-dr-all.yaml 
+  618  less 5.intro-delay.yaml 
+  619  less 6.req-timeout.yaml 
+  620  oc apply -f 5.intro-delay.yaml 
+  621  oc apply -f 6.req-timeout.yaml 
+  622  oc delete -f 6.req-timeout.yaml 
+  623  ls
+  624  cd ../chap7-3/
+  625  ls
+  626  cd ../chap7-4
+  627  ls
+  628  oc new-project bin-app
+  629  ls
+  630  less httpbin.yaml
+  631  ~/ocp-login.sh 
+  632  less httpbin.yaml
+  633  oc adm policy add-scc-to-user anyuid -z httpbin -n bin-app
+  634  ~/ocp-login-user.sh 
+  635  ls
+  636  less httpbin.yaml
+  637  oc apply -f httpbin.yaml
+  638  oc get po -w
+  639  less fortio-deploy.yaml
+  640  oc apply -f fortio-deploy.yaml
+  641  oc get po -w
+  642  ls
+  643  oc get pod 
+  644  oc exec fortio-deploy-69f4745db4-kfsqg -c fortio -- /usr/bin/fortio curl -quiet http://httpbin:8000/get
+  645  ls
+  646  less httpbin-gateway.yaml 
+  647  oc project bin-app
+  648  oc apply -f httpbin-gateway.yaml
+  649  oc get route -n istio-system | grep ingress
+  650  less httpbin-gateway.yaml
+  651  oc port-forward httpbin-87d95b7c6-5t74z 8000:8000
+  652  less httpbin-gateway.yaml
+  653  less httpbin.yaml 
+  654  oc port-forward httpbin-87d95b7c6-5t74z 80:8080
+  655  oc port-forward httpbin-87d95b7c6-5t74z 8080:80
+  656  oc exec fortio-deploy-69f4745db4-kfsqg -c fortio -- /usr/bin/fortio curl -quiet http://httpbin:8000/get
+  657  oc exec fortio-deploy-69f4745db4-kfsqg -c fortio -- /usr/bin/fortio load -c 2 -qps 0 -n 20 http://httpbin:8000/get
+  658  oc exec fortio-deploy-69f4745db4-kfsqg -c fortio -- /usr/bin/fortio load -c 3 -qps 0 -n 30 http://httpbin:8000/get
+  659  ls
+  660  less httpd-circuit-breaker.yaml 
+  661  oc apply -f httpd-circuit-breaker.yaml
+  662  oc exec fortio-deploy-69f4745db4-kfsqg -c fortio -- /usr/bin/fortio curl -quiet http://httpbin:8000/get
+  663  oc exec fortio-deploy-69f4745db4-kfsqg -c fortio -- /usr/bin/fortio load -c 2 -qps 0 -n 20 http://httpbin:8000/get
+  664  oc exec fortio-deploy-69f4745db4-kfsqg -c fortio -- /usr/bin/fortio load -c 3 -qps 0 -n 30 http://httpbin:8000/get
+  665  oc exec fortio-deploy-69f4745db4-kfsqg -c fortio -- /usr/bin/fortio load -c 4 -qps 0 -n 40 http://httpbin:8000/get
+  666  oc exec fortio-deploy-69f4745db4-kfsqg -c fortio -- /usr/bin/fortio curl -quiet http://httpbin:8000/get
+  667  ls
+  668  cd
+  669  oc get endpoints
+  670  oc rsh app1-9-46tgv env | grep APP1
+  671  oc rsh app1-9-46tgv -- env | grep APP1
+  672  oc get pod
+  673  oc rsh app2-1-b5gqk env | grep APP1
+  674  oc rsh app2-1-b5gqk env
+  675  oc get svc
+  676  oc get -o yaml svc app1 > app1-svc1.yaml
+  677  oc delete svc app1
+  678  vim app1-svc1.yaml
+  679  oc apply -f app1-svc1.yaml
+  680  oc get svc app1
+  681  oc rsh app2-1-b5gqk env | grep APP1
+  682  oc delete pod app2-1-b5gqk
+  683  oc get pod | grep Running | grep  app1
+  684  oc get pod | grep Running | grep  app2
+  685  oc rsh app2-1-wdvp4 env | grep APP1_SERVICE_HOST
+  686  oc get po
+  687  oc describe pod app2-1-wdvp4 |less
+  688  oc get svc
+  689  oc describe svc app1 | less
+  690  oc get -o yaml  svc app1 | less
+  691  oc get pod -w
+  692  oc get pod -w | grep app1
+  693  watch -d oc get is app1
+  694  oc get project
+  695  ./ocp-login-user.sh 
+  696  oc get pod
+  697  oc get svc
+  698  oc describe pod app1-9-46tgv 
+  699  oc describe svc app1
+  700  uptime
+  701  sudo -i
+  702  podman ps -a
+  703  sudo -i
+  704  whoami
+  705  ls -l /var/lib/containers/
+  706  podman ps
+  707  podman ps -a
+  708  podman images
+  709  ls -l .local/share/containers/
+  710  ls -l .local/share/containers/storage/overlay-images/
+  711  sudo -i
+  712  podman run -d quay.io/dbais76/httpd 
+  713  podman ps
+  714  podman inspect zealous_wing | grep -i ipaddress
+  715  sudo -i
+  716  ./ocp-login.sh 
+  717  oc whoami
+  718  oc get nodes
+  719  oc adm top 
+  720  oc adm top nodes
+  721  oc describe node ip-10-0-223-19.us-east-2.compute.internal | less
+  722  oc get clusterversion
+  723  oc describe clusterversion | less
+  724  oc get clusteroperators | less
+  725  oc adm node-logs ip-10-0-155-236.us-east-2.compute.internal | less
+  726  oc adm node-logs ip-10-0-155-236.us-east-2.compute.internal -u crio | less
+  727  oc adm node-logs ip-10-0-155-236.us-east-2.compute.internal -u kubelet | less
+  728  oc debug node/ip-10-0-223-19.us-east-2.compute.internal
+  729  oc new-project testerr
+  730  oc new-app --as-deployment-config --name testerr --from-image docker.io/library/httpd -l app=web
+  731  oc help new-app | less
+  732  oc new-app --as-deployment-config --name testerr --docker-image=docker.io/library/httpd -l app=web
+  733  oc get pod -w
+  734  oc get pod
+  735  oc logs testerr-1-wrqhq
+  736  oc help debug | less
+  737  oc get dc
+  738  oc debug dc/testerr --as-root
+  739  oc help cp | less
+  740  oc new-app --as-deployment-config --name workingapp --docker-image=quay.io/dbais76/fedora-httpd-ocp:1.0 -l app=wrkg
+  741  oc get route
+  742  oc get svc
+  743  oc get pod | grep Running
+  744  oc port-forward workingapp-1-hhvcr 8080:8080
+  745  oc get pod --loglevel 6
+  746  oc get pod --loglevel 8
+  747  sudo -i
+  748  ./ocp-login.sh 
+  749  oc get pod
+  750  sudo -i
+  751  oc new-project testsec
+  752  oc new-app --as-deployment-config --name mytestdb -e MYSQL_USER=user101 -e MYSQL_PASSWORD=abcd1234 --docker-image=registry.access.redhat.com/rhscl/mysql-56-rhel7 -l app=mydb
+  753  oc get dc
+  754  oc get -o yaml dc/mytestdb | less
+  755  oc create secret -h
+  756  oc create secret generic secret1 --from-literal=Chapter=Fourth
+  757  oc get -o yaml secret/secret1 |less
+  758  echo Rm91cnRo | base64 -d
+  759  oc set env dc/mytestdb --from secret/secret1
+  760  oc get -o yaml dc/mytestdb | less
+  761  oc get pod
+  762  oc  logs mytestdb-2-b4zm5
+  763  oc create secret generic mysql-val --from-literal=MYSQL_ROOT_PASSWORD=abcd1234 --from-literal=MYSQL_DATABASE=testdb
+  764  oc set env dc/mytestdb --from secret/mysql-val
+  765  oc get pod -w
+  766  oc get -o yaml dc/mytestdb | less
+  767  oc get po
+  768  oc logs mytestdb-3-9l2cg
+  769  oc get secret
+  770  oc edit secret secret1
+  771  echo Fifth | base64
+  772  oc edit secret secret1
+  773  oc rsh mytestdb-3-9l2cg env | grep CHAPTER
+  774  oc rollout latest dc/mytestdb
+  775  oc get pod -w
+  776  oc rsh mytestdb-4-hfnhq env | grep CHAPTER
+  777  oc whoami --show-console
+  778  less ocp-login.sh 
+  779  oc project
+  780  vim filesecret.txt
+  781  oc create secret generic filesecret --from-file=filesecret.txt
+  782  oc create cm democonfig --from-literal=name=DO280
+  783  oc get -o yaml cm/democonfig | less
+  784  oc set env dc/mytestdb --from cm/democonfig
+  785  oc get -o yaml dc/mytestdb | less
+  786  oc get project
+  787  oc project testerr
+  788  oc get pod
+  789  oc describe pod testerr-1-wrqhq | grep scc
+  790  oc edit scc restricted 
+  791  oc logs testerr-1-wrqhq
+  792  oc edit scc restricted 
+  793  oc edit scc privileged 
+  794  oc edit scc anyuid
+  795  oc create sa mysa
+  796  oc adm policy add-scc-to-user anyuid -z mysa -n testerr
+  797  oc get deployment
+  798  oc get dc
+  799  #oc set serviceaccount dc/testerr 
+  800  oc help set serviceaccount | less
+  801  oc set serviceaccount dc/testerr mysa
+  802  oc get pod -w
+  803  oc rsh testerr-2-l8grh
+  804  oc logs testerr-2-l8grh
+  805  oc describe pod testerr-2-l8grh |grep scc
+  806  oc get pod
+  807  oc rsh workingapp-1-hhvcr id
+  808  oc edit scc restricted 
+  809  sudo -i
+  810  podman ps -a
+  811  podman rm -a
+  812  podman images
+  813  podman rmi 39c2d1c93266
+  814  sudo -i
+  815  vim ocp-login.sh 
+  816  vim ocp-login-user.sh 
+  817  ./ocp-login.sh 
+  818  oc whoami
+  819  oc get nodes
+  820  oc debug node/ip-10-0-161-202.us-east-2.compute.internal
+  821  oc get co
+  822  oc get projects|less
+  823  oc get projects | grep operator
+  824  oc get projects | grep operator -B1
+  825  sudo -i
+  826  oc whoami
+  827  cd 
+  828  cat ocp-login-user.sh 
+  829  ls bookdemo-call.sh 
+  830  sudo cp bookdemo-call.sh /home/demouser/.
+  831  ./ocp-login.sh 
+  832  oc whoami --show-console
+  833  cat ocp-login.sh 
+  834  hostname
+  835  oc new-project bookdemo
+  836  cd istio-DO328/
+  837  ls
+  838  cd bookinfo-demo/
+  839  ls
+  840  oc project
+  841  oc adm policy add-role-to-user admin user1 -n bookdemo
+  842  ~/ocp-login-user.sh 
+  843  ls
+  844  oc project
+  845  oc apply -f bookinfo.yaml
+  846  oc get po -w
+  847  oc get po 
+  848  oc apply -f bookinfo-gateway.yaml
+  849  oc get gateway
+  850  oc get vs
+  851  oc get route -n istio-system | grep ingress
+  852  whoami
+  853  sudo -i
+  854  su - demouser
+  855  sudo -i
+  856  oc get pod -n bookdemo
+  857  sudo -i
+  858  cd 
+  859  ls
+  860  ./bookdemo-call.sh 
+  861  oc whoami
+  862  oc new-project dd
+  863  oc new-app --as-deployment-config --name dd php:7.3~https://github.com/dbais76/DO180-apps --conytext-dir php-helloworld -l app=dd
+  864  oc new-app --as-deployment-config --name dd php:7.3~https://github.com/dbais76/DO180-apps --context-dir php-helloworld -l app=dd
+  865  ooc get po -w
+  866  oc get po -w
+  867  oc logs bc/dd
+  868  oc get po -w
+  869  oc logs bc/dd -f
+  870  oc get po -w
+  871  oc get svc
+  872  oc expose svc dd
+  873  oc get route
+  874  curl http://dd-dd.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com
+  875  oc edit bc dd
+  876  oc start-build dd
+  877  oc logs bc/dd -f
+  878  oc get po -w
+  879  curl http://dd-dd.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com
+  880  oc get is
+  881  oc get route -n openshift-image-registry
+  882  sudo -i
+  883  cd istio-DO328/
+  884  ls
+  885  cd Chap5/chap5-1
+  886  ls
+  887  less gateway-vs-dr.yaml 
+  888  oc projects
+  889  less helloworld.yaml 
+  890  less gateway-vs-dr.yaml 
+  891  ls
+  892  scp gateway-vs-dr.yaml demouser@192.168.1.20:~/.
+  893  less gateway-vs-dr.yaml 
+  894  oc new-project testcanary
+  895  oc project testcanary
+  896  oc apply -f helloworld.yaml 
+  897  oc get pod -w
+  898  ls
+  899  oc apply -f gateway-vs-dr.yaml 
+  900  vim gateway-vs-dr.yaml
+  901  oc apply -f gateway-vs-dr.yaml 
+  902  oc get route -n istio-system 
+  903  ls
+  904  while tru
+  905  while true; do curl istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/hello; done
+  906  cd 
+  907  vim bookdemo-call.sh
+  908  chmod a+x bookdemo-call.sh
+  909  ./bookdemo-call.sh 
+  910  chmod a+x bookdemo-call.sh
+  911  vim bookdemo-call.sh
+  912  ./bookdemo-call.sh 
+  913  man curl
+  914  vim bookdemo-call.sh
+  915  ./bookdemo-call.sh 
+  916  vim bookdemo-call.sh
+  917  ./bookdemo-call.sh 
+  918  vim bookdemo-call.sh
+  919  oc get bc
+  920  oc start-build dd
+  921  oc get pod -w
+  922  oc start-build dd
+  923  oc get pod -w
+  924  oc get is
+  925  cat ocp-login.sh 
+  926  TOKEN=$(oc whoami -t)
+  927  podman login -u user1 -p ${TOKEN} default-route-openshift-image-registry.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com
+  928  oc describe is dd
+  929  podman pull default-route-openshift-image-registry.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/dd/dd@sha256:38bcae4a7522f9d8feff78c4e9f0a86941ca2baaf63d4e7b6dc140fd5109f58b
+  930  podman imageds
+  931  podman images
+  932  podman tag 1bcf48a6deda green-depl:1.0
+  933  podman run -d -P 1bcf48a6deda
+  934  podman ps
+  935  curl http://localhost:43805
+  936  podman images
+  937  podman login quay.io -u dbais76
+  938  podman tag 1bcf48a6deda quay.io/dbais76/deploy-test:green
+  939  podman push quay.io/dbais76/deploy-test:green
+  940  oc start-build dd
+  941  oc get pod -w
+  942  oc describe is dd
+  943  podman pull default-route-openshift-image-registry.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/dd/dd@sha256:f78de92dd9c8027d258aa4c1b2868ae90f736ae1ca094c7ddbd670a95d83b850
+  944  podman images
+  945  podman tag cd60ccef6e53 blue-depl
+  946  podman tag cd60ccef6e53 blue-depl:1.0
+  947  podman images
+  948  podman run -d -P cd60ccef6e53
+  949  podman ps 
+  950  curl http://localhost:42093
+  951  podman tag cd60ccef6e53 quay.io/dbais76/deploy-test:blue
+  952  podman images
+  953  podman push quay.io/dbais76/deploy-test:blue
+  954  oc whoami
+  955  oc new-project deployment-demo
+  956  oc import-image deploy-test:blue --confirm --from quay.io/dbais76/deploy-test:blue
+  957  oc import-image deploy-test:green --confirm --from quay.io/dbais76/deploy-test:green
+  958  oc get is
+  959  oc describe is
+  960  oc new-app --name blueapp -i deploy-test:blue --name=deploy-blue
+  961  oc get pod
+  962  #oc new-app --name greenapp -i deploy-test:green --name=deploy-green
+  963  oc get svc
+  964  oc expose svc deploy-blue
+  965  oc get route
+  966  curl http://deploy-blue-deployment-demo.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com
+  967  oc new-app --name greenapp -i deploy-test:green --name=deploy-green
+  968  oc patch route/deploy-blue -p '{"spec":{"to":{"name":"deploy-green"}}}'
+  969  curl http://deploy-blue-deployment-demo.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com
+  970  history | tail -n 10
+  971  history | tail -n 20
+  972  oc expose svc/deploy-blue --name=bluegreen-route
+  973  oc get route
+  974  curl http://bluegreen-route-deployment-demo.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com
+  975  curl http://deploy-blue-deployment-demo.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com
+  976  oc get svc
+  977  oc get svc -o json | less
+  978  oc get svc -o json
+  979  oc get svc -o jsonpath='{.metadata.name}'
+  980  oc get svc -o jsonpath='{.items[*].metadata.name}'
+  981  oc project
+  982  oc delete all --all
+  983  oc import-image deploy-test:blue --confirm --from quay.io/dbais76/deploy-test:blue
+  984  oc import-image deploy-test:green --confirm --from quay.io/dbais76/deploy-test:green
+  985  oc get is
+  986  oc describe is
+  987  oc get is
+  988  ls
+  989  vim bookdemo-call.sh 
+  990  cp bookdemo-call.sh helloworld-call.sh
+  991  vim helloworld-call.sh
+  992  oc project deployment-demo
+  993  oc get pod
+  994  oc delete all --all
+  995  oc import-image hello:v1 quay.io/dbais76/examples-helloworld-v1:latest --confirm
+  996  oc delete is hello 
+  997  oc import-image helloapp:v1 --from quay.io/dbais76/examples-helloworld-v1:latest --confirm
+  998  oc import-image helloapp:v2 --from quay.io/dbais76/examples-helloworld-v2:latest --confirm
+  999  oc describe is helloapp
+ 1000  oc project
+ 1001  while true; do curl http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/hello; done
+ 1002  ls
+ 1003  pwd
+ 1004  oc get route -n istio-system
+ 1005  curl http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/hello
+ 1006  while true; do curl http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/hello; done
+ 1007  curl -w "%{http_code}\n" http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/hello
+ 1008  man ab
+ 1009  cd ~/istio-DO328/Chap7/chap7-4/
+ 1010  ls
+ 1011  less httpbin
+ 1012  less httpbin.yaml 
+ 1013  oc whoami
+ 1014  oc new-project httpbin
+ 1015  oc whoami
+ 1016  oc adm  policy add-role-to-user admin user1 -n httpbin
+ 1017  oc adm policy add-scc-to-user anyuid -z httpbin -n httpbin
+ 1018  ~/ocp-login.sh 
+ 1019  ~/ocp-login-user.sh 
+ 1020  oc project
+ 1021  ls
+ 1022  oc apply -f httpbin.yaml
+ 1023  less httpbin-gateway.yaml
+ 1024  oc project bookdemo
+ 1025  oc get pod
+ 1026  ~/istio-DO328/delete_all.sh 
+ 1027  oc project httpbin
+ 1028  oc get pod
+ 1029  ls
+ 1030  less httpbin-gateway.yaml 
+ 1031  oc apply -f httpbin-gateway.yaml
+ 1032  oc get gateway
+ 1033  oc describe gateway
+ 1034  curl -w "%{http_code}\n" http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com
+ 1035  ab -n 3 -c 3 http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com
+ 1036  ab -n 3 -c 3 http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/
+ 1037  ab -n 4 -c 4 http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/
+ 1038  ls
+ 1039  less httpd-circuit-breaker.yaml 
+ 1040  oc apply -f httpd-circuit-breaker.yaml
+ 1041  ab -n 1 -c 1 http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/
+ 1042  ab -n 2 -c 2 http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/
+ 1043  ab -n 3 -c 3 http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/
+ 1044  less httpd-circuit-breaker.yaml 
+ 1045  man ab
+ 1046  ab -n 3 -c 6 http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/
+ 1047  ab -n 1 -c 6 http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/
+ 1048  ab -n 3 -c 3 http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/
+ 1049  man ab
+ 1050  yum install fortio
+ 1051  sudo yum install fortio
+ 1052  cat httpd-circuit-breaker.yaml 
+ 1053  oc get circuitbreaker
+ 1054  oc get dr
+ 1055  oc describe dr
+ 1056  ab -n 3 -c 10 http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/
+ 1057  ab -n 100 -c 10 http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/
+ 1058  ab -n 100000 -c 10 http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/
+ 1059  curl -L https://github.com/fortio/fortio/releases/download/v1.27.0/fortio-linux_amd64-1.27.0.tgz  | sudo tar -C / -xvzpf -
+ 1060  fortio 
+ 1061  fortio --quiet http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/get
+ 1062  fortio -quiet http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/get
+ 1063  fortio curl -quiet http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/get
+ 1064  #fortio curl -quiet http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/get
+ 1065  fortio load -c 2 -qps 0 -n 20 -loglevel Warning http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/get
+ 1066  fortio load -c 3 -qps 0 -n 30 -loglevel Warning http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/get
+ 1067  fortio load -c 5 -qps 0 -n 50 -loglevel Warning http://istio-ingressgateway-istio-system.apps.cluster-58wcl.58wcl.sandbox1506.opentlc.com/get
+ 1068  history | tail -n 20
+ 1069  history > ~/istio-DO328/Chap7/chap7-4/istio-fortio-demo.txt
