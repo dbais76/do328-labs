@@ -33,7 +33,7 @@ spec:
     mirror:
       host: helloworld
       subset: v2
-    mirror_percent: 00
+    mirror_percent: 25
 
 ---
 

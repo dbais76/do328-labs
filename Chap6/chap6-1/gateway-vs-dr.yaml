@@ -32,9 +32,9 @@ spec:
         prefix: "/hello"
     fault:
       abort: 
-        httpStatus: 500
+        httpStatus: 503
         percentage:
-          value: 100      
+          value: 50      
     route:
     - destination:
         host: helloworld.testcanary.svc.cluster.local

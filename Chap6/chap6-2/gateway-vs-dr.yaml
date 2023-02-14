@@ -38,7 +38,7 @@ spec:
     route:
     - destination:
         host: helloworld.testcanary.svc.cluster.local
-        subset: v1
+        subset: v2
   - name: "catchall route for everthing else"
     route:
     - destination:
